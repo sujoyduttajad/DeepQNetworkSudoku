@@ -11,3 +11,9 @@ Make sure to rename the .csv file to "sudoku" if you are running in the Google C
 ## How to run 
 
 If you are running in Google Colab make sure to download the .csv file and then copy and paste each file content to a different cell and then Run All 
+The order in which the code was implemented -
+1. SudokuBoard.py
+2. CustomDeepQNetwork.py
+3. RunGame.py
+
+The RunGame.py is the main file that must be at the end. This file runs the entire project.
