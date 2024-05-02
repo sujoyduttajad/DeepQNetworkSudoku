@@ -1,5 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 
 COLUMNS = ['quizzes', 'solutions']
 
@@ -10,13 +9,8 @@ df_train = pd.read_csv(CSV_FILE_PATH,
 
 num_quizzes = df_train['quizzes'].count()
 
-# Define lists to store accuracy and episode number
-accuracy_history = []
-episode_history = []
 
 def run_game():
-    global correct_solutions, episode_history, accuracy_history  # Declare global variables
-    correct_solutions = 0
     step = 0
     episodes = 10
     for episode in range(episodes):
@@ -32,16 +26,10 @@ def run_game():
             if done:
                 break
             step += 1
-        
-        # Check if the puzzle is solved correctly
-        if (env.puzzle_array == env.solution_array).all():
-            correct_solutions += 1
-        
-        # Store accuracy and episode number
-        accuracy_history.append(correct_solutions / num_quizzes)
-        episode_history.append(episode + 1)
+
 
 print('Game over')
+
 
 if __name__ == "__main__":
     env = SudokuBoard()
@@ -54,11 +42,3 @@ if __name__ == "__main__":
     for i in range(1, num_quizzes):
         run_game()
         env.build_board()
-
-# Plot the accuracy graph
-plt.plot(episode_history, accuracy_history, marker='o')
-plt.title('Accuracy Over Training Episodes')
-plt.xlabel('Episode Number')
-plt.ylabel('Accuracy')
-plt.grid(True)
-plt.show()
